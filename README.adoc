@@ -1,0 +1,103 @@
+= Executando cenários de teste
+
+Inicialmente, é necessário executar as 3 aplicações:
+
+- `target-api` (porta 8080)
+- `webflux-app` (porta 8081)
+- `virtual-threads-app` (porta 8082)
+
+Acessando a pasta `gatling-test` no terminal, basta executar os comandos de acordo com cada cenário.
+
+== Cenário 1 - WebFlux Sequencial
+
+Esse cenário faz 5 chamadas sequenciais para o `target-api` utilizando WebFlux. Cada resposta é passada como parâmetro para a chamada subsequente.
+
+Comando: `mvn gatling:test -Dgatling.simulationClass=test.scala.test.BasicSequentialWebFluxSimulation`
+Resultado:
+
+- Quantidade de requisições com sucesso: 5724
+- Quantidade de requisições com erro: 0
+- Tempo médio de resposta: 261ms
+- Tempo máximo de resposta: 680ms
+- Duração: 6m 18s
+- Número máximo de usuários: 184
+- Tempo padrão de resposta: 259ms (55% das requisições)
+
+== Cenário 2 - WebFlux Paralelo
+
+Esse cenário faz 5 chamadas paralelas para o `target-api` utilizando WebFlux.
+
+Comando: `mvn gatling:test -Dgatling.simulationClass=test.scala.test.BasicParallelWebFluxSimulation`
+Resultado:
+
+- Quantidade de requisições com sucesso: 5751
+- Quantidade de requisições com erro: 0
+- Tempo médio de resposta: 54ms
+- Tempo máximo de resposta: 107ms
+- Duração: 6m 17s
+- Número máximo de usuários: 185
+- Tempo padrão de resposta: 54ms (32% das requisições)
+
+== Cenário 3 - Virtual Threads Sequencial
+
+Esse cenário faz 5 chamadas sequenciais para o `target-api` utilizando CompletableFuture com Virtual Threads habilitado. Cada resposta é passada como parâmetro para a chamada subsequente.
+
+Comando: `mvn gatling:test -Dgatling.simulationClass=test.scala.test.BasicSequentialVirtualThreadsSimulation`
+Resultado:
+
+- Quantidade de requisições com sucesso: 5604
+- Quantidade de requisições com erro: 0
+- Tempo médio de resposta: 333ms
+- Tempo máximo de resposta: 4031ms
+- Duração: 6m 18s
+- Número máximo de usuários: 186
+- Tempo padrão de resposta: 277ms (80% das requisições)
+
+== Cenário 4 - Virtual Threads Paralelo
+
+Esse cenário faz 5 chamadas paralelas para o `target-api` utilizando CompletableFuture com Virtual Threads habilitado.
+
+Comando: `mvn gatling:test -Dgatling.simulationClass=test.scala.test.BasicParallelVirtualThreadsSimulation`
+Resultado:
+
+- Quantidade de requisições com sucesso: 5597
+- Quantidade de requisições com erro: 0
+- Tempo médio de resposta: 129ms
+- Tempo máximo de resposta: 3697ms
+- Duração: 6m 17s
+- Número máximo de usuários: 244
+- Tempo padrão de resposta: 71ms (83% das requisições)
+
+=== Cenários com Virtual Threads habilitado no `target-api`
+
+Aqui serão executados novamente os testes em paralelo, mas com o Virtual Thread habilitado no `target-api`, com a configuração `spring.threads.virtual.enabled=true` no application.properties da aplicação.
+
+== Cenário 5 - WebFlux Paralelo
+
+Esse cenário faz 5 chamadas paralelas para o `target-api` utilizando WebFlux.
+
+Comando: `mvn gatling:test -Dgatling.simulationClass=test.scala.test.BasicParallelWebFluxSimulation`
+Resultado:
+
+- Quantidade de requisições com sucesso: 5564
+- Quantidade de requisições com erro: 0
+- Tempo médio de resposta: 57ms
+- Tempo máximo de resposta: 804ms
+- Duração: 6m 17s
+- Número máximo de usuários: 162
+- Tempo padrão de resposta: 55ms (93% das requisições)
+
+== Cenário 6 - Virtual Threads Paralelo
+
+Esse cenário faz 5 chamadas paralelas para o `target-api` utilizando CompletableFuture com Virtual Threads habilitado.
+
+Comando: `mvn gatling:test -Dgatling.simulationClass=test.scala.test.BasicParallelVirtualThreadsSimulation`
+Resultado:
+
+- Quantidade de requisições com sucesso: 5638
+- Quantidade de requisições com erro: 0
+- Tempo médio de resposta: 190s
+- Tempo máximo de resposta: 5528ms
+- Duração: 6m 17s
+- Número máximo de usuários: 202
+- Tempo padrão de resposta: 80ms (84% das requisições)

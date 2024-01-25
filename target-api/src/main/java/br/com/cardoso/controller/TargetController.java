@@ -1,11 +1,15 @@
 package br.com.cardoso.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class TargetController {
+
+    private final Logger logger = LoggerFactory.getLogger(TargetController.class);
 
     @GetMapping("/a")
     public String getA() throws InterruptedException {
@@ -43,6 +47,7 @@ public class TargetController {
     @GetMapping("/e/{param}")
     public String getE(@PathVariable("param") String param) throws Exception {
         Thread.sleep(50);
+        System.out.println("Recebendo na thread: " + Thread.currentThread());
         if (param.equals("d")) {
             return "e";
         }
