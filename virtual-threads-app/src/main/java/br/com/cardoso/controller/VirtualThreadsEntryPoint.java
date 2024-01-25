@@ -16,12 +16,12 @@ public class VirtualThreadsEntryPoint {
     }
 
     @GetMapping("/sequential")
-    public String getSequentialResult() throws Exception {
+    public String getSequentialResult() {
         return entryPointService.getSequentialResult();
     }
 
     @GetMapping("/parallel")
-    public String getParallelResult() throws Exception {
+    public String getParallelResult() {
         return entryPointService.getParallelResult();
     }
 }
