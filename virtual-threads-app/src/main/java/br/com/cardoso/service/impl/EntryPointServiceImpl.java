@@ -3,12 +3,15 @@ package br.com.cardoso.service.impl;
 import br.com.cardoso.service.EntryPointService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.client.JdkClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 
+import java.net.http.HttpClient;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
 @Service
@@ -61,7 +64,12 @@ public class EntryPointServiceImpl implements EntryPointService {
         if (param != null) {
             uri = uri + "/" + param;
         }
-        RestClient restClient = RestClient.builder().baseUrl("http://localhost:8080").build();
+        RestClient restClient = RestClient.builder().baseUrl("http://localhost:8080")
+                .requestFactory(new JdkClientHttpRequestFactory(
+                        HttpClient.newBuilder()
+                                .executor(Executors.newVirtualThreadPerTaskExecutor())
+                                .build()))
+                .build();
         return restClient.get().uri(uri).retrieve().body(String.class);
     }
 }

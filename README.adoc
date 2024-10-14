@@ -101,3 +101,46 @@ Resultado:
 - Duração: 6m 17s
 - Número máximo de usuários: 202
 - Tempo padrão de resposta: 80ms (84% das requisições)
+
+14/10/2024 Update
+
+[cols="2,2,2,2,2,2,2", options="header"]
+|===
+|Teste                                   |Requisições com Sucesso |Requisições com Erro |Tempo Médio de Resposta |Tempo Máximo de Resposta |Duração  |Número Máximo de Usuários |Tempo Padrão de Resposta
+
+|Virtual Threads
+|5632
+|0
+|56s
+|816ms
+|6m 18s
+|168
+|55ms (97.88% das requisições)
+
+|WebFlux
+|5588
+|0
+|53ms
+|462ms
+|6m 18s
+|165
+|52ms (98.49% das requisições)
+
+|Virtual Threads com JdkClientHttpRequestFactory e Executor de Virtual Thread
+|5632
+|0
+|50s
+|341ms
+|6m 17s
+|164
+|51ms (90.32% das requisições)
+
+|Virtual Threads com JdkClientHttpRequestFactory
+|5651
+|0
+|56s
+|787ms
+|6m 17s
+|166
+|55ms (97.84% das requisições)
+|===
