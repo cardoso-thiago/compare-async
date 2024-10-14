@@ -111,7 +111,7 @@ Resultado:
 |Virtual Threads
 |5632
 |0
-|56s
+|56ms
 |816ms
 |6m 18s
 |168
@@ -129,7 +129,7 @@ Resultado:
 |Virtual Threads com JdkClientHttpRequestFactory e Executor de Virtual Thread
 |5632
 |0
-|50s
+|50ms
 |341ms
 |6m 17s
 |164
@@ -138,7 +138,7 @@ Resultado:
 |Virtual Threads com JdkClientHttpRequestFactory
 |5651
 |0
-|56s
+|56ms
 |787ms
 |6m 17s
 |166
