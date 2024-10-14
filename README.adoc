@@ -104,9 +104,9 @@ Resultado:
 
 14/10/2024 Update
 
-[cols="2,2,2,2,2,2,2", options="header"]
+[cols="2,2,2,2,2,2,2,2", options="header"]
 |===
-|Teste                                   |Requisições com Sucesso |Requisições com Erro |Tempo Médio de Resposta |Tempo Máximo de Resposta |Duração  |Número Máximo de Usuários |Tempo Padrão de Resposta
+|Teste|Requisições com Sucesso |Requisições com Erro |Tempo Médio de Resposta |Tempo Máximo de Resposta |Duração  |Número Máximo de Usuários |Tempo Padrão de Resposta
 
 |Virtual Threads
 |5632
